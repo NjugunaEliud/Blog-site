@@ -1,0 +1,14 @@
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background: burlywood;
+}
+ul li{
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+}

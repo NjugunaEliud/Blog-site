@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamaa Blogs | <%= title %></title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <nav class="nav">
+        <div class="title">
+            <a href="/" style="font-size:1cm;">Trending Blogs</a>
+            <p>A Gossip blog site</p>
+        </div>
+        <ul>
+            <li><a href="/">Blogs</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/create">New Blog</a></li>
+            
+        </ul>
+    </nav>
+    <div style="border-bottom:2px solid rgb(165, 135, 15);" class="blog-content content">
+
+     <%  if(result.length>0){ %>
+        <%  result.forEach(blog=>{ %>
+            <a class="single" href="/blogs/<%= blog._id %> ">
+
+                <h2 class="title"><%- blog.title %></h2>
+                <p class="body"><%- blog.body %></p>
+                <p class="snipet"><%- blog.snippet %></p>
+             </a>
+
+          
+           <% }) %> 
+           <% } else{ %>
+            <p>There are no new blogs...</p>
+           <% } %>
+    </div>
+    <footer>
+        Copyright &copy: Kamaa Blogs 2023
+    </footer>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamaa Blogs | <%= title %></title>
+    
+</head>
+<style>
+h2{
+    margin-bottom: 20px;
+}
+body{
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20;
+    font-family: 'Times New Roman', Times, serif;
+}
+p,h1,h2,h3,a{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #222;
+    
+}
+nav{
+display: flex;
+justify-content: space-between;
+margin-bottom: 30px;
+padding-bottom: 10px;
+border-bottom: 1px solid #ddd;
+text-transform: uppercase;
+}
+nav ul{
+display: flex;
+justify-content: space-between;
+align-items: flex-end;
+margin-left: 20px;
+margin-right: 20px;
+
+}
+nav h1{
+font-size: 3em;
+}
+nav li{
+list-style: none;
+margin-left: 20px;
+margin-right: 20px;
+}
+nav p, nav a{
+color: #777;
+font-weight: 300;
+}
+footer{
+color: #777;
+text-align: center;
+margin: 80px auto 20px;
+}
+h2{
+margin-bottom: 20px;
+}
+h3{
+text-transform: capitalize;
+margin: 8px;
+}
+.content{
+margin-left: 20px;
+}
+.create-blog form{
+max-width: 400px;
+margin: 0 auto;
+}
+.create-blog input,
+.create-blog textarea{
+display: block;
+width: 100%;
+
+
+}
+.create-blog label{
+display: block;
+margin-top: 2px;
+}
+textarea{
+height: 80px;
+}
+.create-blog button{
+margin-top: 10px;
+background: crimson;
+color: white;
+padding: 2px;
+border: 0;
+font-size: 1.2em;
+cursor: pointer;
+}
+.blog-content a{
+    display: block;
+    margin: 40px ;
+    padding-left: 30px;
+    border: 2px solid rgb(236, 224, 226);
+    border-left:2px solid #777;
+    border-radius: 2px;
+
+}
+.details{
+    position: relative;
+}
+.delete{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-left: 20px;
+    border-radius: 50%;
+    padding: 8px;
+
+}
+.delete:hover{
+    cursor: pointer;
+    box-shadow: 1px 2px 3px rgb(159, 142, 235);
+    
+
+}
+img{
+    width: 30px;
+    height: 25px;
+}
+</style>
+
+<body>
+    
+    <nav class="nav">
+        <div class="title">
+            <a href="<%= result._id %>" style="font-size:1cm;">Trending Blogs</a>
+            <p>A Gossip blog site</p>
+        </div>
+        <ul>
+            <li><a href="/">Blogs</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blogs/create">New Blog</a></li>
+        
+        </ul>
+    </nav>
+    <div class="details content">
+    <h2 class="title"><%- result.title %></h2>
+    <div class="content">
+        <p class="body"><%- result.body %></p>
+        <a data-doc="<%- result._id %>" class="delete"><img src="/delete.png" alt=""></i></a>
+    </div>
+    </div>
+    <footer>
+        Copyright &copy: Kamaa Blogs 2023
+    </footer>
+    <script>
+        const trash =document.querySelector('a.delete')
+        trash.addEventListener('click', (e)=>{
+            const endpoint=`/blogs/${trash.dataset.doc}`;
+            fetch(endpoint,{
+                method:'DELETE'
+            })
+            .then((response) => response.json())
+            .then((data) => window.location.href=data.redirect)
+            .catch(err =>
+                console.log(err)
+            )
+        })
+    </script>
+</body>
+</html>
